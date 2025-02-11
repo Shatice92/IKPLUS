@@ -1,4 +1,4 @@
-package org.hatice.ikplus.enums;
+package org.hatice.ikplus.enums.userenums;
 
 public enum UserStatus {
 

@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hatice.ikplus.enums.*;
+import org.hatice.ikplus.enums.userenums.*;
 
 @Data
 @Builder

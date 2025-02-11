@@ -1,4 +1,4 @@
-package org.hatice.ikplus.enums;
+package org.hatice.ikplus.enums.expensesenums;
 
 public enum ExpensesStatus {
 	DRAFT,          // Harcama taslak olarak kaydedildi, henüz gönderilmedi.

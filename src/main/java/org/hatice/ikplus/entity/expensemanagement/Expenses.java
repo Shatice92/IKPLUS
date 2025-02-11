@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hatice.ikplus.enums.ExpensesStatus;
+import org.hatice.ikplus.enums.expensesenums.ExpensesStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -28,5 +28,5 @@ public class Expenses {
 	private ExpensesStatus status;
 	private LocalDate submittedAt; // harcamanın yapıldığı zaman.
 	private Long approvedByUserId;
-	private LocalDate updateAt;
+	private LocalDate updatedAt;
 }
