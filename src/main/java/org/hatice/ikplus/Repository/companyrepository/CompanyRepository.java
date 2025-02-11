@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface CompanyRepository extends JpaRepository<Company, Long> {
 	List<Company> findByIsApproved(boolean isApproved);
-	List<Company> findByOwner_Id(Long ownerId);
+
 }
