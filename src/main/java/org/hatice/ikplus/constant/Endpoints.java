@@ -16,9 +16,9 @@ public class Endpoints {
 	public static final String SHIFT=ROOT+"/shift";
 	public static final String COMMENT= ROOT+"/comment";
 	public static final String NOTIFICATION=ROOT+"/notification";
+	public static final String COMPANY=ROOT+"/company";
 	
     public static final String USER=ROOT+"/user";
     public static final String ROLE=ROOT+"/role";
     public static final String USERROLE=ROOT+"/userRole";
 }
-
