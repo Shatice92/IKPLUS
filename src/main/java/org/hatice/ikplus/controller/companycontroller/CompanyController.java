@@ -2,9 +2,11 @@ package org.hatice.ikplus.controller.companycontroller;
 
 import lombok.RequiredArgsConstructor;
 import org.hatice.ikplus.constant.Endpoints;
-import org.hatice.ikplus.entity.companymanagement.Company;
-import org.hatice.ikplus.service.commentandnotificationservice.CommentService;
+import org.hatice.ikplus.dto.request.companyrequest.CompanyRequestDto;
+import org.hatice.ikplus.dto.response.BaseResponse;
+import org.hatice.ikplus.dto.response.companyresponse.CompanyResponse;
 import org.hatice.ikplus.service.companyservice.CompanyService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,38 +18,82 @@ public class CompanyController {
 	private final CompanyService companyService;
 	
 	@PostMapping
-	public Company createCompany(@RequestBody Company company) {
-		return companyService.createCompany(company);
+	public ResponseEntity<BaseResponse<CompanyResponse>> createCompany(@RequestBody CompanyRequestDto companyRequestDTO) {
+		CompanyResponse response = companyService.createCompany(companyRequestDTO);
+		return ResponseEntity.ok(BaseResponse.<CompanyResponse>builder()
+		                                     .data(response)
+		                                     .message("Company created successfully")
+		                                     .code(200)
+		                                     .success(true)
+		                                     .build());
 	}
 	
 	@PutMapping("/approve/{id}")
-	public Company approveCompany(@PathVariable Long id) {
-		return companyService.approveCompany(id);
+	public ResponseEntity<BaseResponse<CompanyResponse>> approveCompany(@PathVariable Long id) {
+		CompanyResponse responseDTO = companyService.approveCompany(id);
+		return ResponseEntity.ok(BaseResponse.<CompanyResponse>builder()
+		                                     .data(responseDTO)
+		                                     .message("Company approved successfully")
+		                                     .code(200)
+		                                     .success(true)
+		                                     .build());
 	}
 	
 	@PutMapping("/reject/{id}")
-	public Company rejectCompany(@PathVariable Long id) {
-		return companyService.rejectCompany(id);
+	public ResponseEntity<BaseResponse<CompanyResponse>> rejectCompany(@PathVariable Long id) {
+		CompanyResponse responseDTO = companyService.rejectCompany(id);
+		return ResponseEntity.ok(BaseResponse.<CompanyResponse>builder()
+		                                     .data(responseDTO)
+		                                     .message("Company rejected successfully")
+		                                     .code(200)
+		                                     .success(true)
+		                                     .build());
 	}
 	
 	@PutMapping("/{id}")
-	public Company updateCompany(@PathVariable Long id, @RequestBody Company updatedCompany) {
-		return companyService.updateCompany(id, updatedCompany);
+	public ResponseEntity<BaseResponse<CompanyResponse>> updateCompany(@PathVariable Long id,
+	                                                                   @RequestBody CompanyRequestDto updatedCompany) {
+		CompanyResponse responseDTO = companyService.updateCompany(id, updatedCompany);
+		return ResponseEntity.ok(BaseResponse.<CompanyResponse>builder()
+		                                     .data(responseDTO)
+		                                     .message("Company updated successfully")
+		                                     .code(200)
+		                                     .success(true)
+		                                     .build());
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deleteCompany(@PathVariable Long id) {
+	public ResponseEntity<BaseResponse<Boolean>> deleteCompany(@PathVariable Long id) {
 		companyService.deleteCompany(id);
+		return ResponseEntity.ok(BaseResponse.<Boolean>builder()
+		                                     .data(true)
+		                                     .message("Company deleted successfully")
+		                                     .code(200)
+		                                     .success(true)
+		                                     .build());
 	}
 	
 	@GetMapping("/{id}")
-	public Company getCompanyById(@PathVariable Long id) {
-		return companyService.getCompanyById(id);
+	public ResponseEntity<BaseResponse<CompanyResponse>> getCompanyById(@PathVariable Long id) {
+		CompanyResponse responseDTO = companyService.getCompanyById(id);
+		return ResponseEntity.ok(BaseResponse.<CompanyResponse>builder()
+		                                     .data(responseDTO)
+		                                     .message("Company retrieved successfully")
+		                                     .code(200)
+		                                     .success(true)
+		                                     .build());
 	}
 	
 	@GetMapping
-	public List<Company> getAllCompanies() {
-		return companyService.getAllCompanies();
+	public ResponseEntity<BaseResponse<List<CompanyResponse>>> getAllCompanies() {
+		List<CompanyResponse> companies = companyService.getAllCompanies();
+		return ResponseEntity.ok(BaseResponse.<List<CompanyResponse>>builder()
+		                                     .data(companies)
+		                                     .message("Companies retrieved successfully")
+		                                     .code(200)
+		                                     .success(true)
+		                                     .build());
 	}
+	
 	
 }

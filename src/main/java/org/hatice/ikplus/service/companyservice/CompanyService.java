@@ -2,51 +2,70 @@ package org.hatice.ikplus.service.companyservice;
 
 import lombok.RequiredArgsConstructor;
 import org.hatice.ikplus.Repository.companyrepository.CompanyRepository;
+import org.hatice.ikplus.dto.request.companyrequest.CompanyRequestDto;
+import org.hatice.ikplus.dto.response.companyresponse.CompanyResponse;
 import org.hatice.ikplus.entity.companymanagement.Company;
+import org.hatice.ikplus.mapper.CompanyMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class CompanyService {
+	
 	private final CompanyRepository companyRepository;
+	private final CompanyMapper companyMapper;
 	
-	public Company createCompany(Company company) {
-		company.setApproved(false);
-		return companyRepository.save(company);
+	public CompanyResponse createCompany(CompanyRequestDto companyRequestDTO) {
+		Company company = companyMapper.toEntity(companyRequestDTO);
+		Company savedCompany = companyRepository.save(company);
+		return companyMapper.toDto(savedCompany);
 	}
 	
-	public Company approveCompany(Long companyId) {
-		Company company = companyRepository.findById(companyId).orElseThrow();
+	public CompanyResponse approveCompany(Long id) {
+		Company company = companyRepository.findById(id)
+		                                   .orElseThrow(() -> new RuntimeException("Company not found"));
 		company.setApproved(true);
-		return companyRepository.save(company);
+		companyRepository.save(company);
+		return companyMapper.toDto(company);
 	}
 	
-	public Company rejectCompany(Long companyId) {
-		Company company = companyRepository.findById(companyId).orElseThrow();
+	public CompanyResponse rejectCompany(Long id) {
+		Company company = companyRepository.findById(id)
+		                                   .orElseThrow(() -> new RuntimeException("Company not found"));
 		company.setApproved(false);
-		return companyRepository.save(company);
+		companyRepository.save(company);
+		return companyMapper.toDto(company);
 	}
 	
-	public Company updateCompany(Long companyId, Company updatedCompany) {
-		Company company = companyRepository.findById(companyId).orElseThrow();
-		company.setName(updatedCompany.getName());
-		company.setEmailDomain(updatedCompany.getEmailDomain());
-		company.setLogo(updatedCompany.getLogo());
-		return companyRepository.save(company);
+	public CompanyResponse updateCompany(Long id, CompanyRequestDto updatedCompanyDTO) {
+		Company company = companyRepository.findById(id)
+		                                   .orElseThrow(() -> new RuntimeException("Company not found"));
+		
+		company.setName(updatedCompanyDTO.name());
+		company.setEmailDomain(updatedCompanyDTO.emailDomain());
+		
+		companyRepository.save(company);
+		return companyMapper.toDto(company);
 	}
 	
-	public void deleteCompany(Long companyId) {
-		companyRepository.deleteById(companyId);
+	public void deleteCompany(Long id) {
+		companyRepository.deleteById(id);
 	}
 	
-	public Company getCompanyById(Long companyId) {
-		return companyRepository.findById(companyId).orElseThrow();
+	public CompanyResponse getCompanyById(Long id) {
+		Company company = companyRepository.findById(id)
+		                                   .orElseThrow(() -> new RuntimeException("Company not found"));
+		return companyMapper.toDto(company);
 	}
 	
-	public List<Company> getAllCompanies() {
-		return companyRepository.findAll();
+	public List<CompanyResponse> getAllCompanies() {
+		return companyRepository.findAll().stream()
+		                        .map(companyMapper::toDto)
+		                        .collect(Collectors.toList());
 	}
 	
+
 }
