@@ -23,6 +23,5 @@ public class EmployeeDocument {
 	private String name;
 	private String url;
 	private LocalDateTime uploadedDate;
-	
-	
+
 }

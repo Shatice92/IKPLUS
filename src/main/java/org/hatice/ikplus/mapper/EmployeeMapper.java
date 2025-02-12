@@ -23,6 +23,5 @@ public interface EmployeeMapper {
 	void updateEmployeeFromDto(UpdateEmployeeRequestDto dto, @MappingTarget Employee entity);
 	
 	EmployeeResponse toEmployeeResponse(Employee employee);
-	
-	
+
 }

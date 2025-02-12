@@ -5,7 +5,7 @@ import org.hatice.ikplus.enums.expensesenums.ExpensesStatus;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public record ExpensesResponseDto(
+public record ExpensesResponse(
         Long id,
         Long employeeId,
         BigDecimal amount,

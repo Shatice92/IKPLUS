@@ -9,9 +9,6 @@ import java.util.List;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
-	
-	
 	List<Employee> findByCompanyId(Long companyId);
-	
 	List<Employee> findByStatus(EmployeeType status);
 }
