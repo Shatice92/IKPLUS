@@ -17,7 +17,7 @@ public class ExpensesService {
     private final ExpensesRepository expensesRepository;
 
     // Harcama ekleme
-    public ExpensesResponseDto addExpense(ExpensesRequestDto request) {
+    public void addExpense(ExpensesRequestDto request) {
         Expenses expense = Expenses.builder()
                 .employeeId(request.employeeId()) // Record olduğu için doğrudan erişiyoruz.
                 .amount(request.amount())
@@ -29,7 +29,7 @@ public class ExpensesService {
 
         expense = expensesRepository.save(expense); // Veritabanına kaydet
 
-        return mapToResponseDTO(expense);
+        mapToResponseDTO(expense);
     }
 
     // Harcamayı onaylama
