@@ -22,20 +22,20 @@ public class ExpensesService {
     private final ExpensesMapper expensesMapper;
 
     // Harcama ekleme
-    public ExpensesResponse addExpense(AddExpensesRequestDto request) {
+    public void addExpense(AddExpensesRequestDto request) {
         Expenses expense = expensesMapper.fromAddExpensesRequestDto(request);
         Expenses savedExpense = expensesRepository.save(expense);
-        return expensesMapper.toExpensesResponse(savedExpense);
+        expensesMapper.toExpensesResponse(savedExpense);
     }
 
     // Harcamayı onaylama
-    public ExpensesResponse approveExpense(Long expenseId) {
-        return updateExpenseStatus(expenseId, ExpensesStatus.APPROVED);
+    public void approveExpense(Long expenseId) {
+        updateExpenseStatus(expenseId, ExpensesStatus.APPROVED);
     }
 
     // Harcamayı reddetme
-    public ExpensesResponse rejectExpense(Long expenseId) {
-        return updateExpenseStatus(expenseId, ExpensesStatus.REJECTED);
+    public void rejectExpense(Long expenseId) {
+        updateExpenseStatus(expenseId, ExpensesStatus.REJECTED);
     }
 
     // Genel statü güncelleme metodu
@@ -65,7 +65,7 @@ public class ExpensesService {
     }
 
     // Harcama güncelleme
-    public ExpensesResponse updateExpense(Long expenseId, UpdateExpensesRequestDto request) {
+    public void updateExpense(Long expenseId, UpdateExpensesRequestDto request) {
         Expenses expense = expensesRepository.findById(expenseId)
                 .orElseThrow(() -> new IKPlusException(ErrorType.EXPENSE_NOT_FOUND));
 
@@ -73,6 +73,6 @@ public class ExpensesService {
         expense.setUpdatedAt(LocalDate.now());
         Expenses updatedExpense = expensesRepository.save(expense);
 
-        return expensesMapper.toExpensesResponse(updatedExpense);
+        expensesMapper.toExpensesResponse(updatedExpense);
     }
 }

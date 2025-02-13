@@ -3,6 +3,7 @@ package org.hatice.ikplus.controller.expensescontroller;
 import lombok.RequiredArgsConstructor;
 import org.hatice.ikplus.constant.Endpoints;
 import org.hatice.ikplus.dto.request.expensesrequest.AddExpensesRequestDto;
+import org.hatice.ikplus.dto.request.expensesrequest.UpdateExpensesRequestDto;
 import org.hatice.ikplus.dto.response.BaseResponse;
 import org.hatice.ikplus.dto.response.expensesresponse.ExpensesResponse;
 import org.hatice.ikplus.service.expensesservice.ExpensesService;
@@ -28,25 +29,44 @@ public class ExpensesController {
 
     // Harcamayı onaylama (PUT)
     @PutMapping(APPROVE)
-    public ResponseEntity<ExpensesResponse> approveExpense(@PathVariable Long id) {
-        return ResponseEntity.ok(expensesService.approveExpense(id));
+    public ResponseEntity<BaseResponse<Boolean>> approveExpense(@PathVariable Long id) {
+        expensesService.approveExpense(id);
+        return ResponseEntity.ok(BaseResponse.<Boolean>builder().data(true).message("Expenses approved successfully")
+                .code(200).success(true).build());
     }
 
     // Harcamayı reddetme (PUT)
     @PutMapping(REJECT)
-    public ResponseEntity<ExpensesResponse> rejectExpense(@PathVariable Long id) {
-        return ResponseEntity.ok(expensesService.rejectExpense(id));
+    public ResponseEntity<BaseResponse<Boolean>> rejectExpense(@PathVariable Long id) {
+        expensesService.rejectExpense(id);
+        return ResponseEntity.ok(BaseResponse.<Boolean>builder().data(true).message("Expenses rejected successfully")
+                .code(200).success(true).build());
+    }
+    // Harcama güncelleme (PUT)
+    @PutMapping(UPDATE)
+    public ResponseEntity<BaseResponse<Boolean>> updateExpense(@PathVariable Long id,
+                                                               @RequestBody UpdateExpensesRequestDto request) {
+
+        expensesService.updateExpense(id, request);
+
+        return ResponseEntity.ok(BaseResponse.<Boolean>builder().data(true).message("Expenses updated successfully")
+                .code(200).success(true).build());
     }
 
     // Belirli bir çalışana ait harcamaları getirme (GET)
     @GetMapping(GETEXPENSESBYEMPLOYEEID)
-    public ResponseEntity<List<ExpensesResponse>> getExpensesByEmployee(@PathVariable Long employeeId) {
-        return ResponseEntity.ok(expensesService.getExpensesByEmployee(employeeId));
+    public ResponseEntity<BaseResponse<List<ExpensesResponse>>> getExpensesByEmployee(@PathVariable Long employeeId) {
+        return ResponseEntity.ok(BaseResponse.<List<ExpensesResponse>>builder()
+                .data(expensesService.getExpensesByEmployee(employeeId)).message("Expenses retrieved successfully")
+                .code(200).success(true).build());
     }
 
     // Tüm harcamaları listeleme (GET)
     @GetMapping(LIST)
-    public ResponseEntity<List<ExpensesResponse>> getAllExpenses() {
-        return ResponseEntity.ok(expensesService.getAllExpenses());
+    public ResponseEntity<BaseResponse<List<ExpensesResponse>>> getAllExpenses() {
+        return ResponseEntity.ok(BaseResponse.<List<ExpensesResponse>>builder()
+                .data(expensesService.getAllExpenses()).message("Expenses listed successfully")
+                .code(200).success(true).build());
     }
+
 }
