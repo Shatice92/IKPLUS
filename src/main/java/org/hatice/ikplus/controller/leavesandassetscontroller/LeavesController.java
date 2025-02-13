@@ -1,6 +1,7 @@
 package org.hatice.ikplus.controller.leavesandassetscontroller;
 
 import lombok.RequiredArgsConstructor;
+import org.hatice.ikplus.constant.Endpoints;
 import org.hatice.ikplus.dto.request.permissionrequest.AddLeaveRequestDto;
 import org.hatice.ikplus.dto.request.permissionrequest.UpdateLeaveRequestDto;
 import org.hatice.ikplus.dto.response.BaseResponse;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+import static org.hatice.ikplus.constant.Endpoints.*;
+
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/leaves")
+@RequestMapping(Endpoints.LEAVE)
 @RequiredArgsConstructor
 public class LeavesController {
 	private final LeavesService leaveService;
@@ -32,7 +35,7 @@ public class LeavesController {
 		                                     .build());
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping(UPDATE)
 	public ResponseEntity<BaseResponse<LeaveResponse>> updateLeave(@PathVariable Long id,
 	                                                               @RequestBody UpdateLeaveRequestDto dto) {
 		LeaveResponse response = leaveService.updateLeave(id, dto);
@@ -44,7 +47,7 @@ public class LeavesController {
 		                                     .build());
 	}
 	
-	@PutMapping("/approve/{id}")
+	@PutMapping(APPROVEBYID)
 	public ResponseEntity<BaseResponse<Boolean>> approveLeave(@PathVariable Long id) {
 		leaveService.approveLeave(id);
 		return ResponseEntity.ok(BaseResponse.<Boolean>builder()
@@ -55,7 +58,7 @@ public class LeavesController {
 		                                     .build());
 	}
 	
-	@PutMapping("/reject/{id}")
+	@PutMapping(REJECTBYID)
 	public ResponseEntity<BaseResponse<Boolean>> rejectLeave(@PathVariable Long id) {
 		leaveService.rejectLeave(id);
 		return ResponseEntity.ok(BaseResponse.<Boolean>builder()
@@ -66,7 +69,7 @@ public class LeavesController {
 		                                     .build());
 	}
 	
-	@GetMapping
+	@GetMapping(GETALLLEAVES)
 	public ResponseEntity<BaseResponse<List<LeaveResponse>>> getAllLeaves() {
 		List<LeaveResponse> leaves = leaveService.getAllLeaves();
 		return ResponseEntity.ok(BaseResponse.<List<LeaveResponse>>builder()
@@ -77,7 +80,7 @@ public class LeavesController {
 		                                     .build());
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping(FINDBYID)
 	public ResponseEntity<BaseResponse<LeaveResponse>> getLeaveById(@PathVariable Long id) {
 		LeaveResponse response = leaveService.getLeaveById(id);
 		return ResponseEntity.ok(BaseResponse.<LeaveResponse>builder()
@@ -88,7 +91,7 @@ public class LeavesController {
 		                                     .build());
 	}
 	
-	@GetMapping("/employee/{employeeId}")
+	@GetMapping(GETBYEMPLOYEEID)
 	public ResponseEntity<BaseResponse<List<LeaveResponse>>> getLeavesByEmployeeId(@PathVariable Long employeeId) {
 		List<LeaveResponse> leaves = leaveService.getLeavesByEmployeeId(employeeId);
 		return ResponseEntity.ok(BaseResponse.<List<LeaveResponse>>builder()

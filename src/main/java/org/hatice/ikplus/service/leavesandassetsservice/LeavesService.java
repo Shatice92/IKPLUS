@@ -30,22 +30,17 @@ public class LeavesService {
 	public LeaveResponse updateLeave(Long id, UpdateLeaveRequestDto dto) {
 		Leaves existingLeaveEntity = leaveRepository.findById(id)
 		                                            .orElseThrow(() -> new IKPlusException(ErrorType.LEAVE_NOT_FOUND));
-		
 		LeaveMapper.INSTANCE.updateLeaveFromDto(dto, existingLeaveEntity);
-		
 		Leaves savedLeave = leaveRepository.save(existingLeaveEntity);
-		
 		return LeaveMapper.INSTANCE.toLeaveResponse(savedLeave);
 	}
 	
 	public void approveLeave(Long id) {
 		Leaves leave = leaveRepository.findById(id)
 		                              .orElseThrow(() -> new IKPlusException(ErrorType.LEAVE_NOT_FOUND));
-		
 		if (leave.getStatus() == LeaveStatus.APPROVED) {
 			throw new IKPlusException(ErrorType.LEAVE_ALREADY_APPROVED);
 		}
-		
 		leave.setStatus(LeaveStatus.APPROVED);
 		leaveRepository.save(leave);
 	}
@@ -53,11 +48,9 @@ public class LeavesService {
 	public void rejectLeave(Long id) {
 		Leaves leave = leaveRepository.findById(id)
 		                              .orElseThrow(() -> new IKPlusException(ErrorType.LEAVE_NOT_FOUND));
-		
 		if (leave.getStatus() == LeaveStatus.REJECTED) {
 			throw new IKPlusException(ErrorType.LEAVE_ALREADY_REJECTED);
 		}
-		
 		leave.setStatus(LeaveStatus.REJECTED);
 		leaveRepository.save(leave);
 	}
@@ -76,11 +69,9 @@ public class LeavesService {
 	
 	public List<LeaveResponse> getLeavesByEmployeeId(Long employeeId) {
 		List<Leaves> leaves = leaveRepository.findByEmployeeId(employeeId);
-		
 		if (leaves.isEmpty()) {
 			throw new IKPlusException(ErrorType.LEAVELIST_EMPTY);
 		}
-		
 		return leaves.stream()
 		             .map(LeaveMapper.INSTANCE::toLeaveResponse)
 		             .collect(Collectors.toList());

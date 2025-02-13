@@ -15,13 +15,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LeaveResponse {
-	private Long id;                   // Leave talebinin ID'si
-	private Long employeeId;           // Çalışanın ID'si
-	private Long leaveTypeId;          // İzin tipi ID'si
-	private LocalDate startDate;       // Başlangıç tarihi
-	private LocalDate endDate;         // Bitiş tarihi
-	private Long approvedByUserId;     // Onaylayan kullanıcı ID'si
-	private LocalDateTime createdAt;   // Oluşturulma tarihi
-	private LocalDateTime updatedAt;   // Güncellenme tarihi
-	private LeaveStatus status;        // İzin durumu (PENDING, APPROVED, REJECTED)
+	private Long id;
+	private Long employeeId;
+	private Long leaveTypeId;
+	private LocalDate startDate;
+	private LocalDate endDate;
+	private Long approvedByUserId;
+	private LocalDateTime createdAt;
+	private LocalDateTime updatedAt;
+	private LeaveStatus status;
 }

@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.hatice.ikplus.constant.Endpoints.*;
+import static org.hatice.ikplus.constant.Endpoints.SAVE;
+
+@CrossOrigin("*")
 @RestController
 @RequestMapping(Endpoints.ASSET)
 @RequiredArgsConstructor
@@ -27,7 +31,7 @@ public class AssetsController {
 		                                     .build());
 	}
 	
-	@GetMapping("/get/{id}")
+	@GetMapping(GETBYID)
 	public ResponseEntity<BaseResponse<AssetResponseDto>> getAssetById(@PathVariable Long id) {
 		return ResponseEntity.ok(BaseResponse.<AssetResponseDto>builder()
 		                                     .data(assetsService.findById(id))
@@ -37,7 +41,7 @@ public class AssetsController {
 		                                     .build());
 	}
 	
-	@GetMapping("/getByEmployeeId/{employeeId}")
+	@GetMapping(GETBYEMPLOYEEID)
 	public ResponseEntity<BaseResponse<List<AssetResponseDto>>> getAssetsByEmployeeId(@PathVariable Long employeeId) {
 		return ResponseEntity.ok(BaseResponse.<List<AssetResponseDto>>builder()
 		                                     .data(assetsService.getAssetsByEmployeeId(employeeId))
@@ -47,7 +51,7 @@ public class AssetsController {
 		                                     .build());
 	}
 	
-	@PostMapping("/save")
+	@PostMapping(SAVE)
 	public ResponseEntity<BaseResponse<Boolean>> createAsset(@RequestBody CreateAssetRequestDto dto) {
 		assetsService.save(dto);
 		return ResponseEntity.ok(BaseResponse.<Boolean>builder()
@@ -58,7 +62,7 @@ public class AssetsController {
 		                                     .build());
 	}
 	
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping(DELETE)
 	public ResponseEntity<BaseResponse<Boolean>> deleteAsset(@PathVariable Long id) {
 		assetsService.delete(id);
 		return ResponseEntity.ok(BaseResponse.<Boolean>builder()

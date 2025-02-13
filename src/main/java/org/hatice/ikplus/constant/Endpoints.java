@@ -16,6 +16,13 @@ public class Endpoints {
 	public static final String SHIFT=ROOT+"/shift";
 	public static final String COMMENT= ROOT+"/comment";
 	public static final String NOTIFICATION=ROOT+"/notification";
+    public static final String ASSET=ROOT+"/asset";
+    public static final String LEAVE=ROOT+"/leave";
+    public static final String LEAVETYPES=ROOT+"/leave-types";
+    
+	public static final String HOLIDAY=ROOT+"/holiday";
+	
+    
 	
     public static final String USER=ROOT+"/user";
     public static final String ROLE=ROOT+"/role";
@@ -42,11 +49,15 @@ public class Endpoints {
     
     
     public static final String GETBYSTATUS = "/get-by-status";
+    public static final String GETBYEMPLOYEEID = "/get-by-employeeid/{employeeId}";
     
 
   public static final String USERROLE=ROOT+"/userRole";
 	public static final String SAVEUSER="/save-user";
 	public static final String GETALLUSERS="/get-all-users";
+    public static final String GETALLLEAVES="/get-all-leaves";
+    public static final String APPROVEBYID="/approve/{id}";
+	public static final String REJECTBYID="/reject/{id}";
 	public static final String FINDBYID = "/findById/{id}";
 	public static final String REGISTER="/register";
 	public static final String LOGIN = "/login";
