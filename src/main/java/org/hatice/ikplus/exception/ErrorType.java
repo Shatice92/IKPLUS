@@ -19,18 +19,8 @@ public enum ErrorType {
 	PASSWORD_MISMATCH(3000,"Girilen şifreler uyuşmamaktadır.",HttpStatus.BAD_REQUEST),
 	INVALID_TOKEN(5000,"Invalid Token",HttpStatus.BAD_REQUEST ),
 	INVALID_CREDENTIALS(1003, "Geçersiz email veya şifre.", HttpStatus.UNAUTHORIZED),
-	PERMISSION_NOT_FOUND(2001, "Permission not found", HttpStatus.NOT_FOUND),
-	PERMISSION_ALREADY_APPROVED(2002, "Permission already approved", HttpStatus.BAD_REQUEST),
-	PERMISSION_ALREADY_REJECTED(2003, "Permission already rejected", HttpStatus.BAD_REQUEST),
-	LEAVE_TYPE_ALREADY_EXISTS(3001, "Leave type already exists", HttpStatus.BAD_REQUEST),
-	INVALID_LEAVE_TYPE(3002, "Invalid leave type", HttpStatus.BAD_REQUEST),
-	LEAVE_TYPE_NOT_FOUND(3003, "Leave type not found", HttpStatus.NOT_FOUND),
-	LEAVE_NOT_FOUND(4001, "Leave not found", HttpStatus.NOT_FOUND),
-	LEAVELIST_EMPTY(4002, "Leave list is empty", HttpStatus.NOT_FOUND),
-	LEAVE_ALREADY_APPROVED(4004, "Leave has already been approved", HttpStatus.BAD_REQUEST),
-	LEAVE_ALREADY_REJECTED(4003, "Leave has already been rejected", HttpStatus.BAD_REQUEST),
-	ASSET_NOT_FOUND(5001, "Asset not found", HttpStatus.NOT_FOUND);
-	
+	ROLE_NOT_FOUND(4001, "Role not found", HttpStatus.NOT_FOUND);
+
 	
 	int code;
 	String message;

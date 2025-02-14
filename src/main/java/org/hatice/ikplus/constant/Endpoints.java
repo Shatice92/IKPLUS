@@ -61,8 +61,9 @@ public class Endpoints {
 	public static final String FINDBYID = "/findById/{id}";
 	public static final String REGISTER="/register";
 	public static final String LOGIN = "/login";
+	public static final String ASSIGNROLE = "/assign-role";
 	
 	
-	
-
+	public static final String ASSIGN = "/assign";
+	public static final String GETBYROLENAME = "/get-by-role-name/{roleName}";
 }
