@@ -1,9 +1,8 @@
 package org.hatice.ikplus.mapper;
 
-
-import org.hatice.ikplus.dto.request.permissionrequest.AddLeaveRequestDto;
-import org.hatice.ikplus.dto.request.permissionrequest.UpdateLeaveRequestDto;
-import org.hatice.ikplus.dto.response.permissionresponse.LeaveResponse;
+import org.hatice.ikplus.dto.request.leavesandassetrequest.AddLeaveRequestDto;
+import org.hatice.ikplus.dto.request.leavesandassetrequest.UpdateLeaveRequestDto;
+import org.hatice.ikplus.dto.response.leavesandassetsresponse.LeaveResponse;
 import org.hatice.ikplus.entity.leaveandassetmanagement.Leaves;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

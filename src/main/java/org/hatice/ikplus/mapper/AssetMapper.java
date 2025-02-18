@@ -1,8 +1,8 @@
 package org.hatice.ikplus.mapper;
 
-import org.hatice.ikplus.dto.request.permissionrequest.CreateAssetRequestDto;
-import org.hatice.ikplus.dto.request.permissionrequest.UpdateAssetRequestDto;
-import org.hatice.ikplus.dto.response.permissionresponse.AssetResponseDto;
+import org.hatice.ikplus.dto.request.leavesandassetrequest.CreateAssetRequestDto;
+import org.hatice.ikplus.dto.request.leavesandassetrequest.UpdateAssetRequestDto;
+import org.hatice.ikplus.dto.response.leavesandassetsresponse.AssetResponseDto;
 import org.hatice.ikplus.entity.leaveandassetmanagement.Assets;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

@@ -2,9 +2,10 @@ package org.hatice.ikplus.controller.leavesandassetscontroller;
 
 import lombok.RequiredArgsConstructor;
 import org.hatice.ikplus.constant.Endpoints;
-import org.hatice.ikplus.dto.response.permissionresponse.AssetResponseDto;
-import org.hatice.ikplus.dto.request.permissionrequest.CreateAssetRequestDto;
+import org.hatice.ikplus.constant.Endpoints.*;
+import org.hatice.ikplus.dto.request.leavesandassetrequest.CreateAssetRequestDto;
 import org.hatice.ikplus.dto.response.BaseResponse;
+import org.hatice.ikplus.dto.response.leavesandassetsresponse.AssetResponseDto;
 import org.hatice.ikplus.service.leavesandassetsservice.AssetsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,16 +13,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import static org.hatice.ikplus.constant.Endpoints.*;
-import static org.hatice.ikplus.constant.Endpoints.SAVE;
 
-@CrossOrigin("*")
 @RestController
-@RequestMapping(Endpoints.ASSET)
+@RequestMapping(Endpoints.EMPLOYEE_ASSETS)
 @RequiredArgsConstructor
 public class AssetsController {
 	private final AssetsService assetsService;
 	
-	@GetMapping(LIST)
+	@GetMapping(Endpoints.LIST)
 	public ResponseEntity<BaseResponse<List<AssetResponseDto>>> getAllAssets() {
 		return ResponseEntity.ok(BaseResponse.<List<AssetResponseDto>>builder()
 		                                     .data(assetsService.findAll())
@@ -41,7 +40,7 @@ public class AssetsController {
 		                                     .build());
 	}
 	
-	@GetMapping(GETBYEMPLOYEEID)
+	@GetMapping(GETASSETBYEMPLOYEEID)
 	public ResponseEntity<BaseResponse<List<AssetResponseDto>>> getAssetsByEmployeeId(@PathVariable Long employeeId) {
 		return ResponseEntity.ok(BaseResponse.<List<AssetResponseDto>>builder()
 		                                     .data(assetsService.getAssetsByEmployeeId(employeeId))

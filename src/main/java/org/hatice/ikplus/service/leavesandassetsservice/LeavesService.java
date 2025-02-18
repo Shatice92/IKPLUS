@@ -1,10 +1,10 @@
 package org.hatice.ikplus.service.leavesandassetsservice;
 
 import lombok.RequiredArgsConstructor;
-
-import org.hatice.ikplus.dto.request.permissionrequest.AddLeaveRequestDto;
-import org.hatice.ikplus.dto.request.permissionrequest.UpdateLeaveRequestDto;
-import org.hatice.ikplus.dto.response.permissionresponse.LeaveResponse;
+import org.hatice.ikplus.controller.leavesandassetscontroller.LeavesController;
+import org.hatice.ikplus.dto.request.leavesandassetrequest.AddLeaveRequestDto;
+import org.hatice.ikplus.dto.request.leavesandassetrequest.UpdateLeaveRequestDto;
+import org.hatice.ikplus.dto.response.leavesandassetsresponse.LeaveResponse;
 import org.hatice.ikplus.entity.leaveandassetmanagement.Leaves;
 import org.hatice.ikplus.enums.leaveandassetenums.LeaveStatus;
 import org.hatice.ikplus.exception.ErrorType;
@@ -14,15 +14,12 @@ import org.hatice.ikplus.repository.leaveandassetrepository.LeavesRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-
 
 @Service
 @RequiredArgsConstructor
 public class LeavesService {
 	private final LeavesRepository leaveRepository;
-	
 	public Leaves createLeave(AddLeaveRequestDto dto) {
 		return leaveRepository.save(LeaveMapper.INSTANCE.fromAddLeaveRequestDto(dto));
 	}

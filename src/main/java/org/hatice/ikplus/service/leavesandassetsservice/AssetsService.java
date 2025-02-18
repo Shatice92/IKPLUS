@@ -1,9 +1,9 @@
 package org.hatice.ikplus.service.leavesandassetsservice;
 
 import lombok.RequiredArgsConstructor;
-import org.hatice.ikplus.dto.request.permissionrequest.UpdateAssetRequestDto;
-import org.hatice.ikplus.dto.response.permissionresponse.AssetResponseDto;
-import org.hatice.ikplus.dto.request.permissionrequest.CreateAssetRequestDto;
+import org.hatice.ikplus.dto.request.leavesandassetrequest.CreateAssetRequestDto;
+import org.hatice.ikplus.dto.request.leavesandassetrequest.UpdateAssetRequestDto;
+import org.hatice.ikplus.dto.response.leavesandassetsresponse.AssetResponseDto;
 import org.hatice.ikplus.entity.leaveandassetmanagement.Assets;
 import org.hatice.ikplus.enums.leaveandassetenums.AssetStatus;
 import org.hatice.ikplus.exception.ErrorType;
@@ -15,13 +15,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
-
 @Service
 @RequiredArgsConstructor
 public class AssetsService {
 	private final AssetsRepository assetsRepository;
-	
 	public void save(CreateAssetRequestDto dto) {
 		Assets asset = AssetMapper.INSTANCE.fromCreateAssetRequestDto(dto);
 		assetsRepository.save(asset);
