@@ -41,9 +41,6 @@ public class Endpoints {
 	
 	
 	
-	
-	
-	
 	// Şirket Yöneticisi rolü için
 	public static final String COMPANY_MANAGER_EMPLOYEES = COMPANY_MANAGER + "/employees";
 	public static final String COMPANY_MANAGER_SHIFTS = COMPANY_MANAGER + "/shifts";

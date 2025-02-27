@@ -15,6 +15,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
@@ -33,6 +35,7 @@ public class SecurityConfig {
 		    .authorizeHttpRequests(req -> req
 				    // Register ve Login işlemleri için herkese açık izin
 				    .requestMatchers("swagger-ui/**", "/v3/api-docs/**", "/v1/dev/user/register", "/v1/dev/user/login")
+				    
 				    .permitAll()
 				    
 				    // Admin, Company Manager, Employee gibi özel roller için yetkilendirme
@@ -49,6 +52,7 @@ public class SecurityConfig {
 		
 		return http.build();
 	}
+	
 	
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
@@ -67,4 +71,6 @@ public class SecurityConfig {
 		return source;
 	}
 	
-}
+	
+		
+	}
