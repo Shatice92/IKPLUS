@@ -67,4 +67,5 @@ public class Company {
 	
 	private LocalDate createdAt;
 	private LocalDate updatedAt;
+	
 }
