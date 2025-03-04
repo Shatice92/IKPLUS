@@ -51,6 +51,7 @@ public class Endpoints {
 	public static final String COMPANY_MANAGER_EMPLOYEE_DOCUMENT = COMPANY_MANAGER + "/employee-document";
 	public static final String COMPANY_MANAGER_SETTINGS = COMPANY_MANAGER + "/settings";
 	public static final String COMPANY_MANAGER_NOTIFICATION = COMPANY_MANAGER + "/notification";
+	public static final String COMPANY_MANAGER_ASSETS =COMPANY_MANAGER+"/assets" ;
 	
 	
 	// Personel rolü için
@@ -96,7 +97,7 @@ public class Endpoints {
 	public static final String APPROVE = "/approve/{id}";
 	public static final String REJECT = "/reject/{id}";
 	public static final String GETEXPENSESBYEMPLOYEEID = "/get-expenses-by-employee/{id}";
-	public static final String GETASSETBYEMPLOYEEID = "/get-asset-by-employeeId/{employeeId}";
+	public static final String GETASSETBYEMPLOYEEID = "/get-asset-by-employeeId";
 	
 	
 	public static final String REGISTER = "/register";
