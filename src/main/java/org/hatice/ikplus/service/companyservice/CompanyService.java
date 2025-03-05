@@ -2,11 +2,13 @@ package org.hatice.ikplus.service.companyservice;
 
 import lombok.RequiredArgsConstructor;
 import org.hatice.ikplus.dto.request.companyrequest.CompanyRequestDto;
+import org.hatice.ikplus.dto.response.TokenInfo;
 import org.hatice.ikplus.dto.response.companyresponse.CompanyResponse;
 import org.hatice.ikplus.entity.companymanagement.Company;
 import org.hatice.ikplus.enums.CompanyStatus;
 import org.hatice.ikplus.mapper.CompanyMapper;
 import org.hatice.ikplus.repository.companyrepository.CompanyRepository;
+import org.hatice.ikplus.service.usermanagement.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,9 +20,10 @@ public class CompanyService {
 	
 	private final CompanyRepository companyRepository;
 	private final CompanyMapper companyMapper;
+	private final UserService userService;
 	
-	public void createCompany(CompanyRequestDto companyRequestDTO) {
-		Company company = companyMapper.toEntity(companyRequestDTO);
+	public void createCompany(CompanyRequestDto companyRequestDTO, TokenInfo tokenInfo) {
+		Company company = companyMapper.INSTANCE.toEntity(companyRequestDTO,tokenInfo, userService);
 		companyRepository.save(company);
 	}
 
